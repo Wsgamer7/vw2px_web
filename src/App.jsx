@@ -77,7 +77,7 @@ function replaceVwWithPx(str, times) {
   if (!times) {
     times = 4.2;
   }
-  return str.replace(/(\d+)vw/g, function (match, p1) {
+  return str.replace(/(\d+)\s*vw/g, function (match, p1) {
     const pxValue = Number(p1) * Number(times);
     const roundedNum = pxValue.toFixed(2);
     return roundedNum + "px";
