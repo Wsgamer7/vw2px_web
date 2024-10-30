@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { useEffect } from "react";
 
 function App() {
   const [rawCss, setRawCss] = useState("");
@@ -7,6 +8,9 @@ function App() {
   const [times, setTimes] = useState(4.2);
   const [copyText, setCopyText] = useState("Copy");
 
+  useEffect(() => {
+    setFixedCss(replaceVwWithPx(rawCss, times));
+  }, [rawCss, times]);
   return (
     <div className="w-[80vw] h-[90vh] overflow-hidden flex-col flex items-center gap-2">
       <h1 className="flex text-2xl items-center">
@@ -30,10 +34,17 @@ function App() {
           value={rawCss}
           onChange={(e) => {
             setRawCss(e.target.value);
-            setFixedCss(replaceVwWithPx(e.target.value, times));
             setCopyText("Copy");
           }}
         />
+        <button
+          className="absolute top-2 right-[50.5%] z-20"
+          onClick={() => {
+            setRawCss("");
+          }}
+        >
+          Clean
+        </button>
         <textarea
           className="w-[50%] p-2 border border-gray-300 resize-none"
           placeholder="Fixed px CSS"
