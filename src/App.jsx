@@ -2,10 +2,13 @@ import { useState } from "react";
 import "./App.css";
 import { useEffect } from "react";
 
+const TIMES = "times";
 function App() {
   const [rawCss, setRawCss] = useState("");
   const [fixedCss, setFixedCss] = useState("");
-  const [times, setTimes] = useState(4.2);
+  const [times, setTimes] = useState(
+    Number(localStorage.getItem(TIMES)) || 4.2
+  );
   const [copyText, setCopyText] = useState("Copy");
 
   useEffect(() => {
@@ -23,6 +26,7 @@ function App() {
           value={times}
           onChange={(e) => {
             setTimes(e.target.value);
+            localStorage.setItem(TIMES, e.target.value);
           }}
         />
         <div>px</div>
