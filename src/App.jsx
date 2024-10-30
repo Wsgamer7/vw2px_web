@@ -37,14 +37,17 @@ function App() {
             setCopyText("Copy");
           }}
         />
-        <button
-          className="absolute top-2 right-[50.5%] z-20"
-          onClick={() => {
-            setRawCss("");
-          }}
-        >
-          Clean
-        </button>
+        {rawCss && (
+          <button
+            className="absolute top-2 right-[50.5%] z-20"
+            onClick={() => {
+              setRawCss("");
+            }}
+          >
+            Clean
+          </button>
+        )}
+
         <textarea
           className="w-[50%] p-2 border border-gray-300 resize-none"
           placeholder="Fixed px CSS"
